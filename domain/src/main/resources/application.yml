@@ -1,5 +1,5 @@
 server:
-  port: 8084
+  port: 8080
   error:
     include-message: always
 
@@ -16,7 +16,7 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:

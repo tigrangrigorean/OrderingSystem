@@ -1,21 +1,43 @@
-package com.domain.model;
+package com.domain.entity;
 
-import java.util.List;
+import jakarta.persistence.*;
 
-
-public class Food {
-
-
+@Entity
+@Table(name = "food")
+public class FoodEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String name;
     private String ingredient;
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(name = "menu_id")
+    private MenuEntity menu;
+
     private double price;
 
-    public Food(String name, String ingredient, double price) {
+
+    public FoodEntity(long id, String name, String ingredient, double price,
+                      MenuEntity menu) {
+        this.id = id;
         this.name = name;
         this.ingredient = ingredient;
         this.price = price;
+
     }
-    public Food(){}
+
+    public FoodEntity() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
