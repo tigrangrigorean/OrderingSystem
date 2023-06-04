@@ -1,6 +1,5 @@
 package com.domain.entity;
 
-import com.domain.model.Address;
 import jakarta.persistence.*;
 
 import java.util.Date;
