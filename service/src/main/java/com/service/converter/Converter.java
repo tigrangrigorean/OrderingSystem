@@ -3,6 +3,8 @@ package com.service.converter;
 import com.domain.entity.*;
 import com.domain.model.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,8 +13,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class Converter {
+
     private  final ModelMapper modelMapper;
 
+    @Autowired
     public Converter(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
@@ -100,7 +104,7 @@ public class Converter {
     			  .stream()
     			  .map(restaurant -> modelMapper.map(restaurant, Restaurant.class))
     			  .collect(Collectors.toList());
-    	
+
     	return restaurantList;
     }
 
