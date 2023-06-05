@@ -9,14 +9,14 @@ spring:
 
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ordering_system
+    url: jdbc:postgresql://localhost:5432/OrderingSystem
     username: postgres
-    password: 19671970
+    password: Klaus67phobia26!
     driver-class-name: org.postgresql.Driver
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
