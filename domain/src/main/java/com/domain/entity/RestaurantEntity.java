@@ -14,8 +14,8 @@ public class RestaurantEntity {
     @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "address_id")
     private AddressEntity address;
-    @OneToOne
-    private MenuEntity menu;
+    @OneToOne(cascade = CascadeType.ALL)
+    private MenuEntity menuEntity;
     @ManyToOne
     @JoinColumn(name = "manager_id")
     private ManagerEntity manager;
@@ -55,12 +55,12 @@ public class RestaurantEntity {
         this.address = address;
     }
 
-    public MenuEntity getMenu() {
-        return menu;
+    public MenuEntity getMenuEntity() {
+        return menuEntity;
     }
 
-    public void setMenu(MenuEntity menu) {
-        this.menu = menu;
+    public void setMenuEntity(MenuEntity menuEntity) {
+        this.menuEntity = menuEntity;
     }
 
     public ManagerEntity getManager() {
@@ -103,7 +103,7 @@ public class RestaurantEntity {
         this.name = name;
         this.tin = tin;
         this.address = address;
-        this.menu = menu;
+        this.menuEntity = menu;
         this.manager = manager;
         this.foundDate = foundDate;
         this.registrationDate = registrationDate;
