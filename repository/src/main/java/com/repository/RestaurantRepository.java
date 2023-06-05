@@ -1,7 +1,6 @@
 package com.repository;
 
 import com.domain.entity.RestaurantEntity;
-import com.domain.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

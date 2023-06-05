@@ -1,8 +1,8 @@
 package com.service.impl;
 
-import com.domain.entity.RestaurantEntity;
 import com.repository.RestaurantRepository;
 import com.service.RestaurantService;
+import com.domain.entity.RestaurantEntity;
 import com.domain.model.Restaurant;
 import com.service.converter.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +28,45 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<Restaurant> getAll() {
-        return null;
+        return converter.entityListToRestaurantList(restaurantRepository.findAll());
     }
 
     @Override
-    public RestaurantEntity save(Restaurant restaurant) {
-        return restaurantRepository.save(converter.restaurantToEntity(restaurant));
+    public Restaurant save(Restaurant restaurant) {
+    	restaurantRepository.save(converter.restaurantToEntity(restaurant));
+        return restaurant;
     }
 
     @Override
-    public Restaurant update(Restaurant restaurant) {
-        return null;
+    public void update(long id,Restaurant restaurant) {
+    	RestaurantEntity restaurantEntity = restaurantRepository.findRestaurantEntityById(id);
+        if(restaurant != null) {
+        	if(restaurant.getName() != null) {
+        		restaurantEntity.setName(restaurant.getName());
+        	}
+        	if(restaurant.getTin() != null) {
+        		restaurantEntity.setTin(restaurant.getTin());
+        	}
+        	if(restaurant.getAddress() != null) {
+        		restaurantEntity.setAddress(converter.addressToEntity(restaurant.getAddress()));
+        	}
+        	if(restaurant.getMenu() != null) {
+        		restaurantEntity.setMenu(converter.menuToEntity(restaurant.getMenu()));
+        	}
+        	if(restaurant.getManager() != null) {
+        		restaurantEntity.setManager(converter.managerToEntity(restaurant.getManager()));
+        	}
+        	if(restaurant.getFoundDate() != null) {
+        		restaurantEntity.setFoundDate(restaurant.getFoundDate());
+        	}
+        	if(restaurant.getRegistrationDate() != null) {
+        		restaurantEntity.setRegistrationDate(restaurant.getRegistrationDate());
+        	}
+        	if(restaurant.getPhoneNumber() != null) {
+        		restaurantEntity.setPhoneNumber(restaurant.getPhoneNumber());
+        	}
+        }
+        restaurantRepository.save(restaurantEntity);
     }
 
     @Override

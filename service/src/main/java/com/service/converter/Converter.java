@@ -5,7 +5,9 @@ import com.domain.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class Converter {
@@ -92,6 +94,15 @@ public class Converter {
     public RestaurantEntity restaurantToEntity(Restaurant restaurant){
         return modelMapper.map(restaurant, RestaurantEntity.class);
     }
+    
+    public List<Restaurant> entityListToRestaurantList(List<RestaurantEntity> restaurantEntityList) {
+    	List<Restaurant> restaurantList = restaurantEntityList
+    			  .stream()
+    			  .map(restaurant -> modelMapper.map(restaurant, Restaurant.class))
+    			  .collect(Collectors.toList());
+    	
+    	return restaurantList;
+    }
 
     /**
      *
@@ -105,6 +116,8 @@ public class Converter {
     public UserEntity restaurantToEntity(User user){
         return modelMapper.map(user, UserEntity.class);
     }
+    
+
 
 
 
