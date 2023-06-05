@@ -1,8 +1,5 @@
 package com.domain.entity;
 
-import com.domain.model.Address;
-import com.domain.model.Manager;
-import com.domain.model.Menu;
 import jakarta.persistence.*;
 
 import java.util.Date;

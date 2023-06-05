@@ -1,7 +1,5 @@
 package com.domain.model;
 
-import java.util.List;
-
 
 public class Food {
 
