@@ -13,6 +13,8 @@ public class AddressEntity {
     private String building;
     private String apartment;
 
+    //TODO make addresses unique
+
     public AddressEntity(long id, String city, String street,
                          String building, String apartment) {
         this.id = id;
