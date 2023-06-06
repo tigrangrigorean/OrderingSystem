@@ -1,6 +1,7 @@
 package com.service.validator;
 
 import com.domain.exception.EntityNotFoundException;
+import com.domain.exception.InvalidPriceException;
 
 public class Validator {
 	
@@ -18,6 +19,12 @@ public class Validator {
 		return true;
 	}
 	
+	public static boolean checkPrice(double price) {
+		if(price < 0) {
+			throw new InvalidPriceException("Entered price is invalid");
+		}
+		return true;
+	}
 	
 
 }
