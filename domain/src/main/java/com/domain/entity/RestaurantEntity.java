@@ -3,6 +3,8 @@ package com.domain.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "restaurant")
 public class RestaurantEntity {
@@ -11,17 +13,38 @@ public class RestaurantEntity {
     private long id;
     private String name;
     private String tin;
+    @OneToMany(mappedBy = "restaurantEntity",
+            cascade = CascadeType.ALL)
+    private List<FoodEntity> foodEntityList;
     @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "address_id")
     private AddressEntity address;
-    @OneToOne(cascade = CascadeType.ALL)
-    private MenuEntity menuEntity;
     @ManyToOne
     @JoinColumn(name = "manager_id")
     private ManagerEntity manager;
     private Date foundDate;
     private Date registrationDate;
     private String phoneNumber;
+    public RestaurantEntity() {
+    }
+    public RestaurantEntity(long id, String name, String tin, AddressEntity address, ManagerEntity manager, Date foundDate, Date registrationDate, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.tin = tin;
+        this.address = address;
+        this.manager = manager;
+        this.foundDate = foundDate;
+        this.registrationDate = registrationDate;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List<FoodEntity> getFoodEntityList() {
+        return foodEntityList;
+    }
+
+    public void setFoodEntityList(List<FoodEntity> foodEntityList) {
+        this.foodEntityList = foodEntityList;
+    }
 
     public long getId() {
         return id;
@@ -55,14 +78,6 @@ public class RestaurantEntity {
         this.address = address;
     }
 
-    public MenuEntity getMenuEntity() {
-        return menuEntity;
-    }
-
-    public void setMenuEntity(MenuEntity menuEntity) {
-        this.menuEntity = menuEntity;
-    }
-
     public ManagerEntity getManager() {
         return manager;
     }
@@ -92,21 +107,6 @@ public class RestaurantEntity {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public RestaurantEntity() {
-    }
-
-    public RestaurantEntity(long id, String name, String tin, AddressEntity address, MenuEntity menu, ManagerEntity manager, Date foundDate, Date registrationDate, String phoneNumber) {
-        this.id = id;
-        this.name = name;
-        this.tin = tin;
-        this.address = address;
-        this.menuEntity = menu;
-        this.manager = manager;
-        this.foundDate = foundDate;
-        this.registrationDate = registrationDate;
         this.phoneNumber = phoneNumber;
     }
 }

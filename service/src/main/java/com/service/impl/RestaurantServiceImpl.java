@@ -60,8 +60,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         if (restaurant.getAddress() != null) {
             restaurantEntity.setAddress(converter.addressToEntity(restaurant.getAddress()));
         }
-        if (restaurant.getMenu() != null) {
-            restaurantEntity.setMenuEntity(converter.menuToEntity(restaurant.getMenu()));
+        if (restaurant.getFoodList()!= null) {
+            restaurantEntity.setFoodEntityList(converter.foodListToEntityList(restaurant.getFoodList()));
         }
         if (restaurant.getManager() != null) {
             restaurantEntity.setManager(converter.managerToEntity(restaurant.getManager()));

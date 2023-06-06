@@ -13,14 +13,14 @@ public class FoodEntity {
     @ManyToOne(
             cascade = CascadeType.REFRESH
     )
-    @JoinColumn(name = "menu_id")
-    private MenuEntity menu;
+    @JoinColumn(name = "restaurant_id")
+    private RestaurantEntity restaurantEntity ;
 
     private double price;
 
 
-    public FoodEntity(long id, String name, String ingredient, double price,
-                      MenuEntity menu) {
+    public FoodEntity(long id, String name, String ingredient, double price
+                      ) {
         this.id = id;
         this.name = name;
         this.ingredient = ingredient;

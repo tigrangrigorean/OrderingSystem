@@ -80,6 +80,13 @@ public class Converter {
 
         return foodList;
     }
+    public List<FoodEntity> foodListToEntityList(List<Food> foodList) {
+        List<FoodEntity> foodEntityList = foodList
+                .stream()
+                .map(food -> modelMapper.map(food, FoodEntity.class))
+                .collect(Collectors.toList());
+        return foodEntityList;
+    }
 
     /**
      *
@@ -101,20 +108,6 @@ public class Converter {
                 .collect(Collectors.toList());
         return managerList;
     }
-    /**
-     *
-     * @param menuEntity
-     * @return
-     */
-    public Menu entityToMenu(MenuEntity menuEntity){
-        return modelMapper.map(menuEntity,Menu.class);
-    }
-
-    public MenuEntity menuToEntity(Menu menu){
-        return modelMapper.map(menu, MenuEntity.class);
-    }
-
-
     /**
      *
      * @param restaurantEntity
@@ -157,6 +150,4 @@ public class Converter {
                 .collect(Collectors.toList());
         return userList;
     }
-
-
 }
