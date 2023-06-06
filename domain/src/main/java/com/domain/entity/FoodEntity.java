@@ -11,7 +11,7 @@ public class FoodEntity {
     private String name;
     private String ingredient;
     @ManyToOne(
-            cascade = CascadeType.ALL
+            cascade = CascadeType.REFRESH
     )
     @JoinColumn(name = "menu_id")
     private MenuEntity menu;

@@ -25,8 +25,8 @@ public class FoodController {
         return ResponseEntity.ok().body(foodServiceImpl.getById(id));
     }
 
-    @GetMapping("/getAllByMenuId")
-    public ResponseEntity<List<Food>> getAllFood(long id) {
+    @GetMapping("/getAllByMenuId/{id}")
+    public ResponseEntity<List<Food>> getAllFood(@PathVariable("id") long id) {
         return ResponseEntity.ok().body(foodServiceImpl.getAllByMenuId(id));
     }
 
