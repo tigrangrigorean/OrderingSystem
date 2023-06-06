@@ -5,6 +5,8 @@ import com.service.RestaurantService;
 import com.domain.entity.RestaurantEntity;
 import com.domain.model.Restaurant;
 import com.service.converter.Converter;
+import com.service.validator.Validator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant getById(long id) {
+    	Validator.checkId(id);
+    	Validator.checkEntity(restaurantRepository.findRestaurantEntityById(id));
         return converter.entityToRestaurant(restaurantRepository.findRestaurantEntityById(id));
     }
 
@@ -33,14 +37,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant save(Restaurant restaurant) {
+    	Validator.checkEntity(restaurant);
     	restaurantRepository.save(converter.restaurantToEntity(restaurant));
         return restaurant;
     }
 
     @Override
     public void update(long id,Restaurant restaurant) {
+    	Validator.checkId(id);
     	RestaurantEntity restaurantEntity = restaurantRepository.findRestaurantEntityById(id);
-        if(restaurant != null) {
+        Validator.checkEntity(restaurant);
+        Validator.checkEntity(restaurantEntity);
         	if(restaurant.getName() != null) {
         		restaurantEntity.setName(restaurant.getName());
         	}
@@ -64,13 +71,16 @@ public class RestaurantServiceImpl implements RestaurantService {
         	}
         	if(restaurant.getPhoneNumber() != null) {
         		restaurantEntity.setPhoneNumber(restaurant.getPhoneNumber());
-        	}
+        	
         }
         restaurantRepository.save(restaurantEntity);
     }
 
     @Override
     public void delete(long id) {
-        restaurantRepository.deleteById(id);
+    	Validator.checkId(id);
+    	if(Validator.checkEntity(restaurantRepository.findRestaurantEntityById(id))) {
+    		 restaurantRepository.deleteById(id);
+    	}
     }
 }
