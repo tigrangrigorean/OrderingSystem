@@ -59,6 +59,14 @@ public class Converter {
     public FoodEntity foodToEntity(Food food){
         return modelMapper.map(food, FoodEntity.class);
     }
+    public List<Food> entityListToFoodList(List<FoodEntity> foodEntityList) {
+        List<Food> foodList = foodEntityList
+                .stream()
+                .map(food -> modelMapper.map(food, Food.class))
+                .collect(Collectors.toList());
+
+        return foodList;
+    }
 
     /**
      *

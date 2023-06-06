@@ -7,8 +7,9 @@ import java.util.List;
 
 public interface FoodService {
     Food getById(long id);
-    List<Food> getAll();
+    List<Food> getAllByMenuId(long id);
     Food save(Food food);
-    Food update(Food food);
+    void update(long id, Food food);
+
     void delete(long id);
 }
