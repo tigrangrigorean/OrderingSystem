@@ -2,16 +2,13 @@ server:
   port: 8084
   error:
     include-message: always
-
 spring:
   main:
     web-application-type: servlet
-
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/OrderingSystem
+    url: jdbc:postgresql://localhost:5432/ordering_system
     username: postgres
-    password: Klaus67phobia26!
+    password: admin
     driver-class-name: org.postgresql.Driver
   jpa:
     open-in-view: false
