@@ -1,33 +1,39 @@
 package com.domain.model;
 
 
-
 import java.util.Date;
+import java.util.List;
 
 public class Restaurant {
     private String name;
     private String tin;
     private Address address;
-    private Menu menu;
+    private List<Food> foodList;
     private Manager manager;
     private Date foundDate;
     private Date registrationDate;
     private String phoneNumber;
-
-    public Restaurant(){}
-
+    public Restaurant() {
+    }
     public Restaurant(String name, String tin,
-                      Address address, Menu menu,
+                      Address address,
                       Manager manager, Date foundDate,
                       Date registrationDate, String phoneNumber) {
         this.name = name;
         this.tin = tin;
         this.address = address;
-        this.menu = menu;
         this.manager = manager;
         this.foundDate = foundDate;
         this.registrationDate = registrationDate;
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<Food> getFoodList() {
+        return foodList;
+    }
+
+    public void setFoodList(List<Food> foodList) {
+        this.foodList = foodList;
     }
 
     public String getName() {
@@ -52,14 +58,6 @@ public class Restaurant {
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
     }
 
     public Manager getManager() {

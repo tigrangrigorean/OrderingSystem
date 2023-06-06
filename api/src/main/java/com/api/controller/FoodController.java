@@ -27,7 +27,7 @@ public class FoodController {
 
     @GetMapping("/getAllByMenuId/{id}")
     public ResponseEntity<List<Food>> getAllFood(@PathVariable("id") long id) {
-        return ResponseEntity.ok().body(foodServiceImpl.getAllByMenuId(id));
+        return ResponseEntity.ok().body(foodServiceImpl.getAllByRestaurantId(id));
     }
 
     @PostMapping("/save")

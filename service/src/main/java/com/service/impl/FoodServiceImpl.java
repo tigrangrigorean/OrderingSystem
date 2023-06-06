@@ -65,7 +65,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public List<Food> getAllByMenuId(long id) {
-        return converter.entityListToFoodList(foodRepository.findFoodEntitiesByMenuId(id));
+    public List<Food> getAllByRestaurantId(long id) {
+        return converter.entityListToFoodList(foodRepository.findFoodEntitiesByRestaurantEntityId(id));
     }
 }
