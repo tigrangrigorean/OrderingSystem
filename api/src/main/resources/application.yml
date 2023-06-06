@@ -6,7 +6,7 @@ spring:
   main:
     web-application-type: servlet
   datasource:
-    url: jdbc:postgresql://localhost:5432/ordering_system
+    url: jdbc:postgresql://localhost:5432/OrderingSystem
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver

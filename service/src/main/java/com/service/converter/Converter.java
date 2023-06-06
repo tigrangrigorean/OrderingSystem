@@ -4,11 +4,9 @@ import com.domain.entity.*;
 import com.domain.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -34,6 +32,14 @@ public class Converter {
         return modelMapper.map(address, AddressEntity.class);
     }
 
+    public List<Address> entityToAddressList(List<AddressEntity> addressEntityList) {
+        List<Address> addressList = addressEntityList
+                .stream()
+                .map(address -> modelMapper.map(address, Address.class))
+                .collect(Collectors.toList());
+        return addressList;
+    }
+
     /**
      *
      * @param adminEntity
@@ -47,6 +53,13 @@ public class Converter {
         return modelMapper.map(admin, AdminEntity.class);
     }
 
+    public List<Admin> entityToAdminList(List<AddressEntity> adminEntityList){
+        List<Admin> adminList = adminEntityList
+                .stream()
+                .map(admin -> modelMapper.map(admin, Admin.class))
+                .collect(Collectors.toList());
+        return adminList;
+    }
     /**
      *
      * @param foodEntity
@@ -81,6 +94,13 @@ public class Converter {
         return modelMapper.map(manager, ManagerEntity.class);
     }
 
+    public List<Manager> entityToManagerList(List<ManagerEntity> managerEntityList){
+        List<Manager> managerList = managerEntityList
+                .stream()
+                .map(manager -> modelMapper.map(manager, Manager.class))
+                .collect(Collectors.toList());
+        return managerList;
+    }
     /**
      *
      * @param menuEntity
@@ -93,6 +113,7 @@ public class Converter {
     public MenuEntity menuToEntity(Menu menu){
         return modelMapper.map(menu, MenuEntity.class);
     }
+
 
     /**
      *
@@ -128,10 +149,14 @@ public class Converter {
     public UserEntity restaurantToEntity(User user){
         return modelMapper.map(user, UserEntity.class);
     }
-    
 
-
-
+    public List<User> entityToUserList(List<UserEntity> userEntityList){
+        List<User> userList = userEntityList
+                .stream()
+                .map(user -> modelMapper.map(user, User.class))
+                .collect(Collectors.toList());
+        return userList;
+    }
 
 
 }
