@@ -22,29 +22,30 @@ public class RestaurantController {
 
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable("id") long id){
+    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable("id") long id) {
         return ResponseEntity.ok().body(restaurantServiceImpl.getById(id));
     }
-    
+
     @GetMapping("")
     public ResponseEntity<List<Restaurant>> getAllRestaurants() {
-    	return ResponseEntity.ok().body(restaurantServiceImpl.getAll());
+        return ResponseEntity.ok().body(restaurantServiceImpl.getAll());
     }
-    
-    
+
+
     @PostMapping("/save")
     public ResponseEntity<Restaurant> saveRestaurant(@RequestBody Restaurant restaurant) {
-    	return ResponseEntity.ok().body(restaurantServiceImpl.save(restaurant));
+        return ResponseEntity.ok().body(restaurantServiceImpl.save(restaurant));
     }
-    @PutMapping ("/update")
-    public ResponseEntity<String> updateRestaurantById(@RequestParam long id,@RequestBody Restaurant restaurant) {
-    	restaurantServiceImpl.update(id,restaurant);
-    	return ResponseEntity.ok().body("Restaurant by " + id + " updated successfully");
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updateRestaurantById(@RequestParam long id, @RequestBody Restaurant restaurant) {
+        restaurantServiceImpl.update(id, restaurant);
+        return ResponseEntity.ok().body("Restaurant by " + id + " updated successfully");
     }
-    
+
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteRestaurant(@RequestParam("id") long id) {
-    	restaurantServiceImpl.delete(id);
-    	return ResponseEntity.ok().body("Restaurant by " + id + " deleted successfully");
+        restaurantServiceImpl.delete(id);
+        return ResponseEntity.ok().body("Restaurant by " + id + " deleted successfully");
     }
 }
