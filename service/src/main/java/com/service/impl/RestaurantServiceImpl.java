@@ -5,13 +5,17 @@ import com.service.RestaurantService;
 import com.domain.entity.RestaurantEntity;
 import com.domain.model.Restaurant;
 import com.service.converter.Converter;
+
 import com.service.validator.Validator;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
+@Transactional
 public class RestaurantServiceImpl implements RestaurantService {
 
     private final Converter converter;
@@ -38,7 +42,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Restaurant save(Restaurant restaurant) {
     	Validator.checkEntity(restaurant);
-    	restaurantRepository.save(converter.restaurantToEntity(restaurant));
+        restaurantRepository.save(converter.restaurantToEntity(restaurant));
         return restaurant;
     }
 
@@ -48,6 +52,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     	RestaurantEntity restaurantEntity = restaurantRepository.findRestaurantEntityById(id);
         Validator.checkEntity(restaurant);
         Validator.checkEntity(restaurantEntity);
+   
         	if(restaurant.getName() != null) {
         		restaurantEntity.setName(restaurant.getName());
         	}
@@ -58,7 +63,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         		restaurantEntity.setAddress(converter.addressToEntity(restaurant.getAddress()));
         	}
         	if(restaurant.getMenu() != null) {
-        		restaurantEntity.setMenu(converter.menuToEntity(restaurant.getMenu()));
+        		restaurantEntity.setMenuEntity(converter.menuToEntity(restaurant.getMenu()));
         	}
         	if(restaurant.getManager() != null) {
         		restaurantEntity.setManager(converter.managerToEntity(restaurant.getManager()));
@@ -71,8 +76,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         	}
         	if(restaurant.getPhoneNumber() != null) {
         		restaurantEntity.setPhoneNumber(restaurant.getPhoneNumber());
-        	
-        }
+
+        	}
         restaurantRepository.save(restaurantEntity);
     }
 

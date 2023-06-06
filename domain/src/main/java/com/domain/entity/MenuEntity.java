@@ -11,8 +11,7 @@ public class MenuEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToMany(mappedBy = "menu",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            cascade = CascadeType.REMOVE)
     private List<FoodEntity> food;
 
     public MenuEntity(long id, List<FoodEntity> foodEntities) {
